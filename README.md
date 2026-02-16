@@ -1,6 +1,6 @@
-# Azure DevOps Skills
+# Azure DevOps Skills (Examples)
 
-This repository contains reusable "skills" for working with Azure DevOps from AI coding assistants (for example, GitHub Copilot in VS Code). Each skill is a focused bundle of instructions and, optionally, references or scripts that teach the model how to perform a specific Azure DevOps task in a consistent, repeatable way.
+This repository contains examples of reusable "skills" for working with Azure DevOps from AI coding assistants (for example, GitHub Copilot in VS Code). Each skill is a focused bundle of instructions and, optionally, references or scripts that teach the model how to perform a specific Azure DevOps task in a consistent, repeatable way.
 
 Skills in this repo are designed to:
 - Standardize how common Azure DevOps workflows are executed (iterations, boards, summaries, etc.)
@@ -46,8 +46,6 @@ At a high level:
 3. Make sure your Copilot / MCP configuration includes this workspace so SKILL files can be loaded.
 4. In chat with Copilot, describe what you want to do (for example, "list iterations for project Contoso" or "summarize work item 123 for project Foo").
 5. Copilot will select the appropriate skill and call the underlying Azure DevOps tools according to the instructions in `SKILL.md`.
-
-Exact setup steps may differ depending on your MCP server wiring and Copilot configuration; follow your environment's MCP/skills documentation for enabling this repo as a skills source.
 
 ---
 
