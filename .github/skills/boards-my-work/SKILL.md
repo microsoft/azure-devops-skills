@@ -10,6 +10,7 @@ Before getting work items, you need to know which project to use.
 - If the user **provides a project name** in their request (for example, "for Contoso"), **use that project directly and do not call** the `core_list_projects` tool.
 - If a project name is **not** provided, first return a prompt asking the user for the project name.
 - If the project name is still not provided after prompting the user, then call the MCP Server tool `core_list_projects` to get the list of projects the user can choose from.
+- Do not continue if the user has not provided a project name or selected one from the list.
 
 # Tools
 
@@ -51,3 +52,13 @@ Bugs
 Tasks
 Test Cases
 other work item types
+
+# Steps
+
+1. Check if the user has provided a project name in their request. If not, prompt the user to provide a project name.
+2. If the user still does not provide a project name, call the `core_list_projects` tool to get the list of projects and prompt the user to select one.
+3. Once a project name is obtained, call the `wit_my_work_items` tool to retrieve the work items assigned to the user for that project. Use `assigned to me` as the filter criteria to get the relevant work items.
+4. Extract the IDs of the retrieved work items and call the `wit_get_work_items_batch_by_ids` tool to get detailed information about those work items, including the default fields if the user did not specify any.
+5. Organize the retrieved work items by their work item type (System.WorkItemType) and sort them by the most recently changed date (System.ChangedDate).
+6. Display the work items in a table format, showing the ID (as a clickable hyperlink), title, state, and priority for each work item, grouped by their work item type.
+
