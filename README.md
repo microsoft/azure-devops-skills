@@ -27,6 +27,8 @@ This repo currently includes skills focused on Azure DevOps work item and iterat
 
 - `boards-my-work` – Lists the user's active work across Azure DevOps boards
 - `boards-work-item-summary` – Summarizes a single work item (plus links and comments)
+- `pipelines-build-summary` – Lists, inspects, and troubleshoots pipeline builds; shows recent builds, drills into status/results, displays logs for failed steps, and lists associated changes
+- `security-alert-review` – Lists and reviews Advanced Security alerts (dependency vulnerabilities, secret exposure, code scanning findings) with filtering by severity, state, and alert type
 - `work-iterations` – Lists, creates, and assigns iterations for projects and teams
 
 Each skill has its own `SKILL.md` under `.github/skills/<skill-name>/` describing:
