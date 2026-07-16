@@ -139,7 +139,7 @@ If there are no dependencies, display: *(none)*
 After all items are listed, display a summary:
 
 > **Summary:**
-> - **Total active items assigned to you:** {N}
+> - **Total active items for the team:** {N}
 > - **Items blocking others:** {M}
 > - **High priority items (1-2):** {P}
 > - **Items due this sprint:** {Q}
