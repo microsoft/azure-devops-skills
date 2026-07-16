@@ -73,10 +73,10 @@ Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 
 - "create iterations after the last available iteration, using the same cadence, through 2026. Then assign all of those new iterations to team 'Contoso Team'"
 
-	- Call `work` with action `list_iterations` to get the full list of current iterations and determine the existing date cadence.
-	- Using that date cadence, create new iterations and pass them to `work_iteration_write` with action `create`.
-	- Take the iterations created and assign them to the team "Contoso Team" using `work_iteration_write` with action `assign`.
-	- Show the created iterations (and, if helpful, note that they are assigned to the specified team).
+  - Call `work` with action `list_iterations` to get the full list of current iterations and determine the existing date cadence.
+  - Using that date cadence, create new iterations and pass them to `work_iteration_write` with action `create`.
+  - Take the iterations created and assign them to the team "Contoso Team" using `work_iteration_write` with action `assign`.
+  - Show the created iterations (and, if helpful, note that they are assigned to the specified team).
 
 ## 4. Assign iterations to a team
 
