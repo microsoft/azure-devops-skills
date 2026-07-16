@@ -41,9 +41,8 @@ Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 
 4. From the returned work items, **filter** to items that meet **all** of the following criteria:
    - `System.State` = `Active`
-   - `System.AssignedTo` matches the current user
 
-5. If no items match the filter, display a message stating there are no active backlog items assigned to the current user for this team and stop.
+5. If no items match the filter, display a message stating there are no active backlog items for this team and stop.
 
 6. Call `wit_work_item` with action `get_batch` for all filtered item IDs with `expand=relations` and the following fields:
    - `System.Id`
