@@ -95,7 +95,7 @@ Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 
 - "assign all iterations in 2025 and 2026 to team 'Contoso Team'"
 
-	- Call `work` with action `list_iterations` to get the full list of iterations.
-	- From the list, find the iterations that fall within 2025 and 2026.
-	- Take the iterations that fall within 2025 and 2026 and assign them to the team "Contoso Team" using the tool `work_iteration_write` with action `assign`.
-	- Show the assigned iterations in a list.
+  - Call `work` with action `list_iterations` to get the full list of iterations.
+  - From the list, find the iterations that fall within 2025 and 2026.
+  - Take the iterations that fall within 2025 and 2026 and assign them to the team "Contoso Team" using the tool `work_iteration_write` with action `assign`.
+  - Show the assigned iterations in a list.
