@@ -17,12 +17,12 @@ Before getting work items, you need to know which project to use.
 Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 
 - `core_list_projects`: Get the list of projects the user can choose from.
-- `wit_my_work_items`: Get work items from Azure DevOps that are assigned to the user
-- `wit_get_work_items_batch_by_ids`: Get work item details in batch by their IDs. Use this tool to get detailed information about the work items retrieved by `wit_my_work_items`.
+- `wit_work_item` (action: `my`): Get work items from Azure DevOps that are assigned to the user
+- `wit_work_item` (action: `get_batch`): Get work item details in batch by their IDs. Use this tool to get detailed information about the work items retrieved by `wit_work_item` with action `my`.
 
 # Fields
 
-When using the tool `wit_get_work_items_batch_by_ids`, if the user does not provide a list of fields to retrieve, use the following default fields:
+When using the tool `wit_work_item` with action `get_batch`, if the user does not provide a list of fields to retrieve, use the following default fields:
 
 - System.Id
 - System.Title
@@ -57,8 +57,8 @@ other work item types
 
 1. Check if the user has provided a project name in their request. If not, prompt the user to provide a project name.
 2. If the user still does not provide a project name, call the `core_list_projects` tool to get the list of projects and prompt the user to select one.
-3. Once a project name is obtained, call the `wit_my_work_items` tool to retrieve the work items assigned to the user for that project. Use `assigned to me` as the filter criteria to get the relevant work items.
-4. Extract the IDs of the retrieved work items and call the `wit_get_work_items_batch_by_ids` tool to get detailed information about those work items, including the default fields if the user did not specify any.
+3. Once a project name is obtained, call the `wit_work_item` tool with action `my` to retrieve the work items assigned to the user for that project. Use `assigned to me` as the filter criteria to get the relevant work items.
+4. Extract the IDs of the retrieved work items and call the `wit_work_item` tool with action `get_batch` to get detailed information about those work items, including the default fields if the user did not specify any.
 5. Organize the retrieved work items by their work item type (System.WorkItemType) and sort them by the most recently changed date (System.ChangedDate).
 6. Display the work items in a table format, showing the ID (as a clickable hyperlink), title, state, and priority for each work item, grouped by their work item type.
 

@@ -15,19 +15,19 @@ This skill always works with **one specific work item ID**.
 
 Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 
-- `wit_get_work_item`: Get a work item from Azure DevOps by its ID.
-- `wit_list_work_item_comments`: Get the list of comments for a work item by its ID.
-- `wit_get_work_items_batch_by_ids`: Get work item details in batch by their IDs. Use this tool to get the details of linked work items, using the links returned from `wit_get_work_item`.
+- `wit_work_item` (action: `get`): Get a work item from Azure DevOps by its ID.
+- `wit_work_item` (action: `list_comments`): Get the list of comments for a work item by its ID.
+- `wit_work_item` (action: `get_batch`): Get work item details in batch by their IDs. Use this tool to get the details of linked work items, using the links returned from `wit_work_item` with action `get`.
 
 # Steps
 
-1. Call `wit_get_work_item` with `expand=all` for the requested ID so that you retrieve fields, relations, and links in a single call.
+1. Call `wit_work_item` with action `get` and `expand=all` for the requested ID so that you retrieve fields, relations, and links in a single call.
 
-2. If the work item has a parent (for example, `System.Parent` or a `System.LinkTypes.Hierarchy-Reverse` relation), include the parent ID in the set of linked IDs to summarize. You do **not** need a separate `wit_get_work_item` call for the parent; instead, rely on `wit_get_work_items_batch_by_ids` in the next step.
+2. If the work item has a parent (for example, `System.Parent` or a `System.LinkTypes.Hierarchy-Reverse` relation), include the parent ID in the set of linked IDs to summarize. You do **not** need a separate call; instead, rely on `wit_work_item` with action `get_batch` in the next step.
 
-3. From the work item `relations` array, collect all linked work item IDs (parent, child, related, and any others). Call `wit_get_work_items_batch_by_ids` once with that list of IDs to get the details of all linked work items.
+3. From the work item `relations` array, collect all linked work item IDs (parent, child, related, and any others). Call `wit_work_item` with action `get_batch` once with that list of IDs to get the details of all linked work items.
 
-4. Call `wit_list_work_item_comments` once to get the comments for the original work item.
+4. Call `wit_work_item` with action `list_comments` once to get the comments for the original work item.
 
 # Display results
 

@@ -15,27 +15,27 @@ This skill works in the context of a **project**. A **pipeline definition** or *
 
 ## Pipeline definition selection
 
-- If the user **provides a pipeline or definition name**, use `pipelines_get_build_definitions` with a `name` filter to find it.
+- If the user **provides a pipeline or definition name**, use `pipelines_definition` with action `list` and a `name` filter to find it.
 - If the user **does not specify a pipeline** and the request requires one (for example, "show recent builds"), ask the user once for the pipeline name.
-- If the pipeline name is **still not provided after asking once**, call `pipelines_get_build_definitions` to list available definitions for the user to choose from.
+- If the pipeline name is **still not provided after asking once**, call `pipelines_definition` with action `list` to list available definitions for the user to choose from.
 
 # Tools
 
 Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 
 - `core_list_projects`: Get a list of projects in the organization.
-- `pipelines_get_build_definitions`: Get a list of build/pipeline definitions for a project.
-- `pipelines_get_builds`: Get a list of builds, optionally filtered by definition, branch, or status.
-- `pipelines_get_build_status`: Get the status and result of a specific build by ID.
-- `pipelines_get_build_log`: Get the list of logs for a specific build.
-- `pipelines_get_build_log_by_id`: Get a specific log by log ID for a build (use to retrieve failed step logs).
-- `pipelines_get_build_changes`: Get the commits/changes associated with a specific build.
+- `pipelines_definition` (action: `list`): Get a list of build/pipeline definitions for a project.
+- `pipelines_build` (action: `list`): Get a list of builds, optionally filtered by definition, branch, or status.
+- `pipelines_build` (action: `get_status`): Get the status and result of a specific build by ID.
+- `pipelines_build_log` (action: `list`): Get the list of logs for a specific build.
+- `pipelines_build_log` (action: `get_content`): Get a specific log by log ID for a build (use to retrieve failed step logs).
+- `pipelines_build` (action: `get_changes`): Get the commits/changes associated with a specific build.
 
 # Rules
 
 ## 1. List recent builds for a pipeline
 
-- When the user asks to **list builds** or **show recent builds** for a pipeline, call `pipelines_get_builds` filtered by the definition ID.
+- When the user asks to **list builds** or **show recent builds** for a pipeline, call `pipelines_build` with action `list` filtered by the definition ID.
 - Optionally filter by `branchName`, `statusFilter`, or `resultFilter` if the user specifies (for example, "failed builds on main").
 - Do **not** fetch logs or changes unless the user asks.
 - Show the results in a table.
@@ -47,7 +47,7 @@ Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 
 ## 2. Get build status by ID
 
-- When the user asks about a **specific build** (for example, "build 12345"), call `pipelines_get_build_status` with that build ID.
+- When the user asks about a **specific build** (for example, "build 12345"), call `pipelines_build` with action `get_status` with that build ID.
 - Show the build number, status, result, source branch, start/finish time, requested by, and definition name.
 - If the build failed, suggest viewing the logs.
 
@@ -57,9 +57,9 @@ Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 
 ## 3. View logs for a failed build
 
-- When the user asks to **view logs** or **why a build failed**, first call `pipelines_get_build_log` to get the list of all log entries for the build.
+- When the user asks to **view logs** or **why a build failed**, first call `pipelines_build_log` with action `list` to get the list of all log entries for the build.
 - Identify failed steps from the log list (look for steps that indicate errors or failures).
-- Call `pipelines_get_build_log_by_id` for the relevant failed log entries to retrieve the actual log content.
+- Call `pipelines_build_log` with action `get_content` for the relevant failed log entries to retrieve the actual log content.
 - Present the log output in a code block so it is easy to read.
 - Do **not** dump all logs. Focus on the failed steps and the last portion of each relevant log.
 
@@ -70,7 +70,7 @@ Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 
 ## 4. List changes for a build
 
-- When the user asks to **see what changed** or **list commits** for a build, call `pipelines_get_build_changes` with the build ID.
+- When the user asks to **see what changed** or **list commits** for a build, call `pipelines_build` with action `get_changes` with the build ID.
 - Show the results in a table with commit ID, author, and message.
 - If there are no changes, explicitly state that there are no changes associated with this build.
 
