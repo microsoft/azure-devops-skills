@@ -89,7 +89,7 @@ Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 
 - "assign iterations 'Iteration 1', 'Iteration 2', and 'Iteration 3' to team 'Contoso Team'"
 
-	- Call `work_iteration_write` with action `assign` with the list of iterations and team name to assign those iterations to the team.
+  - Call `work_iteration_write` with action `assign` with the list of iterations and team name to assign those iterations to the team.
 
 ### Example 2
 
