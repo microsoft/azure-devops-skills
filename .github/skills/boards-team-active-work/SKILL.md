@@ -1,6 +1,6 @@
 ---
 name: boards-team-active-work
-description: Get active work items for a team showing dependencies, priorities, and sprint assignments. Displays items that are blocking others, high priority items first, and items due this sprint. Shows parent/child hierarchy with Title, State, Priority, ChangeDate, Iteration Name, and Iteration End Date.
+description: Get active work items for a team showing dependencies, priorities, and sprint assignments. Displays items that are blocking others, high priority items first, and items due this sprint. Shows parent/child hierarchy with Title, State, Priority, ChangedDate, Iteration Name, and Iteration End Date.
 ---
 
 # Get team active work items with dependencies
