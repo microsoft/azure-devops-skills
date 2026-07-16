@@ -66,8 +66,8 @@ Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 
 - "create iterations after the last available iteration, using the same cadence, through 2026"
 
-	- Call `work` with action `list_iterations` to get the full list of current iterations and determine the existing date cadence.
-	- Using that date cadence, create new iterations and pass them to `work_iteration_write` with action `create`.
+  - Call `work` with action `list_iterations` to get the full list of current iterations and determine the existing date cadence.
+  - Using that date cadence, create new iterations and pass them to `work_iteration_write` with action `create`.
 
 ### Example 2
 
