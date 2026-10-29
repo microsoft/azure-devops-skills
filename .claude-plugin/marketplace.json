@@ -1,0 +1,15 @@
+{
+  "name": "azure-devops-skills",
+  "description": "Skills for working with Azure DevOps through the Azure DevOps MCP Server",
+  "owner": {
+    "name": "Microsoft"
+  },
+  "plugins": [
+    {
+      "name": "azure-devops",
+      "description": "Azure DevOps skills: boards, work items, iterations, pipelines, and security alerts",
+      "source": "./",
+      "skills": ["./.github/skills/"]
+    }
+  ]
+}

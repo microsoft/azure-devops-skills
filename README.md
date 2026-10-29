@@ -16,6 +16,7 @@ Skills in this repo are designed to:
 - `template/` – A starter template for creating new skills
 - `.github/` – GitHub configuration and skill metadata
 - `.vscode/` – VS Code workspace and MCP configuration
+- `.claude-plugin/` – Claude Code plugin marketplace manifest
 
 ---
 
@@ -50,6 +51,35 @@ At a high level:
 3. Make sure your Copilot / MCP configuration includes this workspace so SKILL files can be loaded.
 4. In chat with Copilot, describe what you want to do (for example, "list iterations for project Contoso" or "summarize work item 123 for project Foo").
 5. Copilot will select the appropriate skill and call the underlying Azure DevOps tools according to the instructions in `SKILL.md`.
+
+---
+
+## 🤖 Using These Skills in Claude Code
+
+This repository is a [Claude Code plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces); its `azure-devops` plugin loads every skill under `.github/skills/`.
+
+1. Configure the Azure DevOps MCP server (see above).
+2. Install the plugin:
+
+   ```bash
+   claude plugin marketplace add microsoft/azure-devops-skills
+   claude plugin install azure-devops@azure-devops-skills
+   ```
+
+To enable it for everyone in a repository, add to its `.claude/settings.json`:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "azure-devops-skills": {
+      "source": { "source": "github", "repo": "microsoft/azure-devops-skills" }
+    }
+  },
+  "enabledPlugins": {
+    "azure-devops@azure-devops-skills": true
+  }
+}
+```
 
 ---
 
