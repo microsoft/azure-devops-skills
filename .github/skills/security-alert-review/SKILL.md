@@ -17,14 +17,14 @@ This skill works in the context of a **project** and a **repository**. Both are 
 
 - If the user **provides a repository name**, use that repository directly.
 - If the user **does not specify a repository**, ask the user once for the repository name.
-- If the repository name is **still not provided after asking once**, call `repo_list_repos_by_project` to list available repositories for the user to choose from.
+- If the repository name is **still not provided after asking once**, call `repo_repository` with action `list` to list available repositories for the user to choose from.
 
 # Tools
 
 Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 
 - `core_list_projects`: Get a list of projects in the organization.
-- `repo_list_repos_by_project`: Get a list of repositories for a project.
+- `repo_repository` (action: `list`): Get a list of repositories for a project.
 - `advsec_get_alerts`: Get Advanced Security alerts for a repository, with optional filters for severity, state, alert type, and confidence level.
 - `advsec_get_alert_details`: Get detailed information about a specific alert by ID.
 
