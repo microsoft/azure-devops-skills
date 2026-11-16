@@ -79,6 +79,14 @@ Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 - "what changes were in build 12345?"
 - "list commits for build 12345 in project Contoso"
 
+## 5. Tool limitations
+
+- `pipelines_build` (action `list`) returns several thousand characters per build and has no field selection. For more than a few builds use `az pipelines runs list --pipeline-ids <id> --top 20 --query "[].{id:id,status:status,result:result,branch:sourceBranch,queued:queueTime}" -o json` (filters `--branch`, `--status`, `--result`).
+- `pipelines_run` (action `list`) returns up to 10,000 runs without paging.
+- Step duration: use the `Starting:`/`Finishing:` timestamps in the log content (`startLine`/`endLine` narrow it), not `createdOn`.
+- `pipelines_artifact` (action `download`) writes a 0-byte file for `PipelineArtifact` artifacts (microsoft/azure-devops-mcp#1496); use `az pipelines runs artifact download --run-id <buildId> --artifact-name <name> --path <dir>`. A relative `destinationPath` resolves against the MCP server's working directory.
+- PR builds and empty listings: see `pipelines-pr-validation`.
+
 # Display results
 
 When displaying build lists, show the following in a table:
