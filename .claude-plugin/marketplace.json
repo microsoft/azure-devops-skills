@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "azure-devops",
-      "description": "Azure DevOps skills: boards, work items, iterations, pipelines, and security alerts",
+      "description": "Azure DevOps skills: boards, work items, iterations, pull requests, pipelines, and security alerts",
       "source": "./",
       "skills": ["./.github/skills/"]
     }

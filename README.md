@@ -24,13 +24,14 @@ Skills in this repo are designed to:
 
 > This project is very new and limited in the number of skills defined. We expect to build out more skills over time. 
 
-This repo currently includes skills focused on Azure DevOps work item and iteration management:
+This repo currently includes skills for Azure DevOps boards, iterations, pull requests, pipelines, and security alerts:
 
 - `boards-backlog-summary` – Gets the team's Requirements-level backlog (Product Backlog Items and Bugs) filtered to Active items assigned to the current user, showing parent/child hierarchy sorted by priority
 - `boards-my-work` – Lists the user's active work across Azure DevOps boards
 - `boards-team-active-work` – Gets active work items for a team showing dependencies, priorities, and sprint assignments with parent/child hierarchy
 - `boards-work-item-summary` – Summarizes a single work item (plus links and comments)
 - `pipelines-build-summary` – Lists, inspects, and troubleshoots pipeline builds; shows recent builds, drills into status/results, displays logs for failed steps, and lists associated changes
+- `repos-pull-requests` – Updates pull requests and checks that the change took effect
 - `security-alert-review` – Lists and reviews Advanced Security alerts (dependency vulnerabilities, secret exposure, code scanning findings) with filtering by severity, state, and alert type
 - `work-iterations` – Lists, creates, and assigns iterations for projects and teams
 
