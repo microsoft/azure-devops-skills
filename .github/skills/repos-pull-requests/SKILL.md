@@ -1,6 +1,6 @@
 ---
 name: repos-pull-requests
-description: Change Azure DevOps pull requests and verify that the change took effect. Use when changing an Azure DevOps pull request (retarget, title, description, labels, draft, merge commit message, auto-complete, votes), when a PR update seems ignored, or before pushing to a policy-protected branch (TF402455).
+description: Change Azure DevOps pull requests (retarget, title, description, labels, draft, merge commit message, auto-complete, votes) and verify the change took effect. Use when a PR update seems ignored, or before pushing to a policy-protected branch (TF402455).
 ---
 
 # Pull requests
@@ -8,6 +8,8 @@ description: Change Azure DevOps pull requests and verify that the change took e
 After every write, read the PR back with `repo_pull_request` (action `get`) and compare. The update response can mix new and stale values.
 
 # Tools
+
+Use Azure DevOps MCP Server tools for all interactions with Azure DevOps.
 
 - `repo_pull_request` (actions `get` with `includeLabels`, `list`)
 - `repo_pull_request_write` (actions `create`, `update`, `update_reviewers`, `vote`)
@@ -19,9 +21,7 @@ After every write, read the PR back with `repo_pull_request` (action `get`) and 
 
 - Every `update` publishes a draft PR unless you pass `isDraft: true` — labels, auto-complete, and text changes alike.
 - An `update` with `targetRefName` applies only the retarget; title, description, and other fields are silently dropped. Retarget alone, then update the rest.
-- Retargeting has no CLI path; use `repo_pull_request_write`.
 - Description max 4000 characters; longer rejects the whole call.
-- `az repos pr show` corrupts non-ASCII text; never write a description read through `az` back to the PR.
 
 ## 2. Labels
 
@@ -32,15 +32,14 @@ After every write, read the PR back with `repo_pull_request` (action `get`) and 
 - `mergeCommitMessage` is stored separately from the description and is what lands on the target branch. Update it when the PR's scope changes; keep its first line equal to the title.
 - `mergeCommitMessage` is only stored with `autoComplete: true`; otherwise it is silently ignored.
 - Arming replaces all completion options: pass `mergeStrategy`, `deleteSourceBranch`, and `transitionWorkItems` every time, or they reset (`noFastForward`, not deleted, transition).
-- `autoComplete: false` does not cancel auto-complete. Use `az repos pr update --id <prId> --auto-complete false`.
-- `az repos pr update --merge-commit-message` truncates at the first newline.
+- `autoComplete: false` does not cancel auto-complete; the user cancels it with **Cancel auto-complete** on the pull request in the web UI.
 - Completion options are capped at 4000 encoded characters.
 - Armed means `autoCompleteSetBy` is not null.
 - To change the merge message without arming, use the web **Complete pull request** dialog.
 
 ## 4. Votes
 
-- Never vote, approve, or complete unless asked.
+- Vote, approve, or complete only when asked.
 - The reviewers list shows current votes only. History is in thread system comments: `<name> voted 10` (10 approve, 5 with suggestions, -5 waiting, -10 reject) and `Vote of <name> was reset`.
 - A push can reset approvals. For an approved PR with an expired build, re-queue the policy build instead of pushing.
 
