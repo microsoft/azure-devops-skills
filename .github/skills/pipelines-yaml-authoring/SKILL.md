@@ -1,6 +1,6 @@
 ---
 name: pipelines-yaml-authoring
-description: Avoid Azure Pipelines YAML mistakes that fail silently. Use when writing, reviewing, or debugging Azure Pipelines YAML: steps that differ on Windows agents, empty variables or secrets, template parameters, conditions, Cache@2 misses, inflated or missing test results.
+description: Azure Pipelines YAML mistakes that fail silently. Use when writing, reviewing, or debugging pipeline YAML, including steps that differ on Windows agents, empty variables or secrets, template parameters, conditions, Cache@2 misses, inflated or missing test results.
 ---
 
 # Azure Pipelines YAML
